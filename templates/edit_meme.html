@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>memebook</title>
+    <style type="text/css">
+        * {
+            background-color: lightskyblue;
+        }
+        .column {
+            float: left
+        }
+        .left {
+            width: 75%
+        }
+        .right {
+            width: 25%
+        }
+    form {
+    font-style: normal;
+    display: inline-block;
+    position: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 500px;
+    height: 350px;
+    margin: auto;
+    align-content: center;
+    font-family: monospace;
+    text-align: center;
+    background-color: lightskyblue;
+    }
+</style>
+</head>
+<body style="text-align: center; background-color: lightskyblue">
+    <h1 style="text-align: center;">memebook - <span style="color: midnightblue">edit meme</span></h1>
+    <hr style="border-color: black">
+    <div class="row">
+        <div class="column left">
+            <h2> Meme Title: {{ meme["title"] }} <br>
+            Meme Caption: {{ meme["caption"] }} </h2>
+            {% if meme["extension"] %}
+            <IMG src="/static/uploaded_memes/{{ meme['id'] }}.{{ meme['extension'] }}" width="400px" height="250px">
+            {% endif %}<br>
+            <br>
+            <br>
+            <div>
+                <form action="/{{ active_username }}/edit_meme/{{ meme1_id }}" method="post" id="edit-form"
+                      enctype="multipart/form-data" style="background-color: orange;border-style: ridge">
+                    <p style="font-family: monospace; text-align: center; margin-top: 75px; font-size: x-large;
+                    background-color: orange">Edit Meme</p>
+                    <p style="color: darkred; background-color: orange"> {{ error_message }} </p>
+                    <div style="background-color: orange">
+                        <p style="background-color: orange"><label style="background-color: orange">Update Title</label>
+                        <input type="text" name="title" style="background-color: white">
+                        </p>
+                    </div>
+                    <div style="background-color: orange">
+                        <p style="background-color: orange"><label style="background-color: orange">Update Caption</label>
+                        <input type="text" name="caption" style="background-color: white">
+                        </p>
+                    </div>
+                    <div>
+                        <p style="background-color: orange"><label style="background-color: orange">Update Image</label>
+                        <input type="file" name="file" style="background-color: orange">
+                        </p>
+                    </div>
+                    <div style="background-color: orange">
+                        <button onclick="submit" style="padding: 12px 28px; background-color: darkblue; color: white;
+                        text-align: center; align-content: center">Update Meme</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="column right">
+            {% include 'sidebar.html' %}
+        </div>
+        </div>
+</body>
+</html>
