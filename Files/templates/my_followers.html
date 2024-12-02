@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>memebook</title>
+    <style>
+        * {
+            background-color: lightskyblue;
+        }
+        .column {
+            float: left
+        }
+        .left {
+            width: 75%
+        }
+        .right {
+            width: 25%
+        }
+        .first {
+            width: 50%
+        }
+        .second{
+            width: 25%;
+        }
+        .third{
+            width: 25%;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">memebook - users following you</h1>
+    <hr style="border-color: black">
+    <div class="row">
+        <div class="column left">
+            {% if followers %}Click on username to view user profile{% endif %}
+        <div>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+        <br>
+        <br>
+        {% if followers %}
+        <div>
+            <ol>
+            {% for follower in followers %}
+                {% if user.follow_status_follower(follower) %}
+                <li>
+                    <a href="/{{ active_username }}/profile/{{ follower['follower_username'] }}">{{ follower['follower_username'] }}</a>
+                    - <a href="http://localhost:8080/{{ active_username }}/profile/{{ follower['follower_username'] }}/unfollow">Unfollow</a>
+                    <br>
+                    <br>
+                </li>
+                {% elif user.username == follower['follower_username']  %}
+                <li>
+                    <a href="/{{ active_username }}/profile/{{ follower['follower_username'] }}">{{ follower['follower_username'] }}</a>
+                    <br>
+                    <br>
+                </li>
+                {% else %}
+                <li>
+                    <a href="/{{ active_username }}/profile/{{ follower['follower_username'] }}">{{ follower['follower_username'] }}</a>
+                    - <a href="http://localhost:8080/{{ active_username }}/profile/{{ follower['follower_username'] }}/follow">Follow</a>
+                    <br>
+                    <br>
+                </li>
+                {% endif %}
+            {% endfor %}
+            </ol>
+        </div>
+        {% else %}
+        <div>
+            <h2> No one is following you </h2>
+        </div>
+        {% endif %}
+        </div>
+        <vr></vr>
+        <div class="column right">
+            {% include 'sidebar.html' %}
+        </div>
+    </div>
+</body>
+</html>

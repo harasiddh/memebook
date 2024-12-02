@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>memebook</title>
+    <style type="text/css">
+    form {
+    font-style: normal;
+    display: inline-block;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    font-family: monospace;
+    text-align: left;
+    /* background-color: lightgreen; */
+    }
+</style>
+</head>
+<body style="text-align: center; background-color: lightskyblue">
+    <h1 style="text-align: center;">memebook - register yourself</h1>
+    <hr style="border-color: black">
+    <h3>
+    <div>
+        <form action="/register" method="post" id="register-form">
+            {{ error_message }}
+            <div>
+                <p><label>Email</label>
+                <input type="text" name="email" required>
+                </p>
+            </div>
+            <div>
+                <p><label>First Name</label>
+                <input type="text" name="first_name" required>
+                </p>
+            </div>
+            <div>
+                <p><label>Last Name</label>
+                <input type="text" name="last_name" required>
+                </p>
+            </div>
+            <div>
+                <p><label>Username</label>
+                <input type="text" name="username" required>
+                </p>
+            </div>
+            <div>
+                <p><label>Password</label>
+                <input type="text" name="password" required>
+                </p>
+            </div>
+            <div>
+                <p><label>Repeat Password</label>
+                <input type="text" name="repeat_password" required>
+                </p>
+            </div>
+            <div>
+                <button onclick="submit" style="padding: 12px 28px; background-color: darkblue; color: white; text-align: center; align-content: center">Register</button>
+            </div>
+             <p> Existing User? <a href="http://localhost:8080/login"> Login </a> </p>
+        </form>
+    </div>
+    </h3>
+</body>
+</html>

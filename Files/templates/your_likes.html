@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>memebook</title>
+    <style>
+        * {
+            background-color: lightskyblue;
+        }
+        .column {
+            float: left
+        }
+        .left {
+            width: 75%;
+        }
+        .right {
+            width: 25%
+        }
+        .first {
+            width: 50%
+        }
+        .second{
+            width: 25%;
+        }
+        .third{
+            width: 25%;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">memebook - memes you liked</h1>
+    <hr style="border-color: black">
+    <div class="row">
+        <div class="column left" style="align-content: center; align-items: center">
+        <div>
+            <br>
+            <h2 style="text-align: center;"> is this your taste? </h2>
+            <br>
+        </div>
+        <br>
+        <div style="text-align: center; align-self: center; margin: auto; width: 70%">
+        {% if check_likes %}
+        {% for meme in memes %}
+            {% if user.has_liked_meme(meme) %}
+            <br>
+        <div style="border: black; border-style: dashed; text-align: center; justify-content: center">
+            {% if meme["creator_username"] == active_username %}
+            <h4> <a href="http://localhost:8080/{{ active_username }}/my_profile">
+                {{meme['creator_username']}}</a>: {{meme["title"]}}</h4>
+            {% else %}
+            <h4> <a href="http://localhost:8080/{{ active_username }}/profile/{{meme['creator_username']}}">
+                {{meme['creator_username']}}</a>: {{meme["title"]}}</h4>
+            {% endif %}
+            {% if meme["extension"] %}
+            <IMG src="/static/uploaded_memes/{{ meme['id'] }}.{{ meme['extension'] }}" width="400px" height="250px">
+            {% endif %}<br>
+            {{meme["caption"]}}
+            <br>
+            <div style="text-align: left">
+            {% if user.has_liked_meme(meme) %}
+            <a href="http://localhost:8080/{{ active_username }}/unlikes/{{ meme['id'] }}">Unlike</a>
+            {% else %}
+            <a href="http://localhost:8080/{{ active_username }}/likes/{{ meme['id'] }}">Like</a>
+            {% endif %}
+            <span style="float: right;">Likes: {{ meme['likes'] }} &nbsp;</span>
+            </div>
+            <br>
+        </div>
+            {% endif %}
+        {% endfor %}
+        {% else %}
+        <h2 style="text-align: center;"> you have not liked any memes </h2>
+        {% endif %}
+            <br>
+            <br>
+            Follow other users to see their memes!
+            <br>
+            <br>
+            <a href="http://localhost:8080/{{ active_username }}/search">Search Users</a>
+            <br>
+            <br>
+            <br>
+            <br>
+        </div>
+        </div>
+        <div class="column right">
+            {% include 'sidebar.html' %}
+        </div>
+    </div>
+</body>
+</html>

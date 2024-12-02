@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>memebook</title>
+    <style type="text/css">
+        .column {
+            float: left
+        }
+        .left {
+            width: 75%
+        }
+        .right {
+            width: 25%
+        }
+    form {
+    font-style: normal;
+    display: inline-block;
+    position: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 500px;
+    height: 500px;
+    margin: auto;
+    align-content: center;
+    font-family: monospace;
+    text-align: center;
+    background-color: lightskyblue;
+    }
+</style>
+</head>
+<body style="text-align: center; background-color: lightskyblue">
+    <h1 style="text-align: center;">memebook - <span style="color: midnightblue">delete account</span></h1>
+    <hr style="border-color: black">
+    <div class="row">
+        <div class="column left">
+            <h2> Username: {{ user["username"] }} <br>
+            Email: {{ user["email"] }} </h2>
+            <br>
+            <br>
+            <div style="text-align: center;">
+                <h3 style="color: red; background-color: black"> Are you sure you want to delete your account? This action cannot be undone </h3>
+                <a href="/{{ active_username }}/delete_account/delete_confirmed">Yes, Delete Account</a>&nbsp;
+                &nbsp;<a href="/{{ active_username }}/my_profile">No, Go Back</a>
+
+            </div>
+        </div>
+        <div class="column right">
+            {% include 'sidebar.html' %}
+        </div>
+        </div>
+ </body>
+</html>

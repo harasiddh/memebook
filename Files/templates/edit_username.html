@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>memebook</title>
+    <style type="text/css">
+        * {
+            background-color: lightskyblue;
+        }
+        .column {
+            float: left
+        }
+        .left {
+            width: 75%
+        }
+        .right {
+            width: 25%
+        }
+    form {
+    font-style: normal;
+    display: inline-block;
+    position: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 500px;
+    height: 350px;
+    margin: auto;
+    align-content: center;
+    font-family: monospace;
+    text-align: center;
+    background-color: lightskyblue;
+    }
+</style>
+</head>
+<body style="text-align: center; background-color: lightskyblue">
+    <h1 style="text-align: center;">memebook - <span style="color: midnightblue">edit username</span></h1>
+    <hr style="border-color: black">
+    <div class="row">
+        <div class="column left">
+            <br>
+            <h2>Current Username: {{ active_username }}</h2>
+            <br>
+            <div>
+                <form action="/{{ active_username }}/edit_username" method="post" id="edit_username_form"
+                      enctype="multipart/form-data" style="background-color: lightblue;border-style: ridge">
+                    <p style="font-family: monospace; text-align: center; margin-top: 75px; font-size: x-large;
+                    background-color: lightblue">Edit Username</p>
+                    <p style="color: darkred; background-color: lightblue"> {{ error_message }} </p>
+                    <div style="background-color: lightblue">
+                        <p style="background-color: lightblue"><label style="background-color: lightblue">New Username</label>
+                        <input type="text" name="new_username" style="background-color: white">
+                        </p>
+                    </div>
+                    <div style="background-color: lightblue">
+                        <button onclick="submit" style="padding: 12px 28px; background-color: darkblue; color: white;
+                        text-align: center; align-content: center">Update Username</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="column right">
+            {% include 'sidebar.html' %}
+        </div>
+        </div>
+</body>
+</html>
